@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Evidencias | Desarrollo Web</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#06b6d4',
+                            600: '#0284c7',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        },
+                        violetBrand: {
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Glassmorphism & Animations Styles -->
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .dark .glass-nav {
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge-glow {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300 font-sans min-h-screen flex flex-col justify-between antialiased">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-40 glass-nav transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Logo / Brand Title -->
+            <a href="#inicio" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-violet-600 flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <div>
+                    <span class="text-lg font-bold tracking-tight block">Portafolio<span class="text-cyan-500 dark:text-cyan-400">.Web</span></span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block font-mono">Evidencias Académicas</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium">
+                <a href="#inicio" class="px-3 py-2 rounded-lg hover:bg-slate-200/60 dark:hover:bg-slate-800/60 transition-colors">Inicio</a>
+                <a href="#construye" class="px-3 py-2 rounded-lg hover:bg-slate-200/60 dark:hover:bg-slate-800/60 transition-colors flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-cyan-500"></span> Construye
+                </a>
+                <a href="#implementa" class="px-3 py-2 rounded-lg hover:bg-slate-200/60 dark:hover:bg-slate-800/60 transition-colors flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-violet-500"></span> Implementa
+                </a>
+                <a href="#estadisticas" class="px-3 py-2 rounded-lg hover:bg-slate-200/60 dark:hover:bg-slate-800/60 transition-colors">Resumen</a>
+                <a href="#contacto" class="px-3 py-2 rounded-lg hover:bg-slate-200/60 dark:hover:bg-slate-800/60 transition-colors">Contacto</a>
+            </nav>
+
+            <!-- Actions Right -->
+            <div class="flex items-center space-x-3">
+                <!-- Add Evidence Button -->
+                <button onclick="openAddModal()" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-xs sm:text-sm shadow-md hover:shadow-cyan-500/20 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                    <span class="hidden sm:inline">Nueva Evidencia</span>
+                </button>
+
+                <!-- Dark / Light Mode Toggle -->
+                <button id="themeToggle" onclick="toggleTheme()" aria-label="Cambiar tema" class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-moon text-base dark:hidden"></i>
+                    <i class="fa-solid fa-sun text-base hidden dark:block text-amber-400"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-200">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu Panel -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 px-4 py-4 space-y-2">
+            <a href="#inicio" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800">Inicio</a>
+            <a href="#construye" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800">Construye Aplicaciones Web</a>
+            <a href="#implementa" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800">Implementa Aplicaciones Web</a>
+            <a href="#estadisticas" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800">Resumen & Estadísticas</a>
+            <a href="#contacto" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800">Contacto & Datos</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- HERO SECTION -->
+        <section id="inicio" class="relative pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden">
+            <!-- Glow background decoration -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-cyan-500/10 dark:bg-cyan-500/15 blur-[120px] rounded-full pointer-events-none"></div>
+            <div class="absolute top-1/3 right-10 w-[400px] h-[300px] bg-violet-500/10 dark:bg-violet-500/15 blur-[100px] rounded-full pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Left: Student Info -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 text-xs font-semibold uppercase tracking-wider">
+                            <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
+                            Portafolio Digital de Evidencias
+                        </div>
+
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                            Desarrollo e Implementación de <span class="gradient-text">Aplicaciones Web</span>
+                        </h1>
+
+                        <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            Registro estructurado de proyectos, prácticas y competencias profesionales desarrolladas durante el ciclo académico en arquitectura Frontend y despliegue Backend.
+                        </p>
+
+                        <!-- Profile Data Cards -->
+                        <div class="glass-card p-5 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 text-left grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
+                            <div>
+                                <span class="text-slate-500 dark:text-slate-400 block text-[11px] uppercase font-semibold">Estudiante</span>
+                                <span class="font-bold text-slate-900 dark:text-white">Carlos E. Mendoza</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 dark:text-slate-400 block text-[11px] uppercase font-semibold">Especialidad</span>
+                                <span class="font-bold text-cyan-600 dark:text-cyan-400">Técnico en Programación</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 dark:text-slate-400 block text-[11px] uppercase font-semibold">Semestre / Grupo</span>
+                                <span class="font-bold text-slate-900 dark:text-white">5º Semestre - Grupo A</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 dark:text-slate-400 block text-[11px] uppercase font-semibold">Institución</span>
+                                <span class="font-bold text-slate-900 dark:text-white">CBTis No. 118</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 dark:text-slate-400 block text-[11px] uppercase font-semibold">Docente</span>
+                                <span class="font-bold text-slate-900 dark:text-white">Ing. Roberto Gómez</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 dark:text-slate-400 block text-[11px] uppercase font-semibold">Año Lectivo</span>
+                                <span class="font-bold text-slate-900 dark:text-white">2026 - 2027</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA Actions -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#construye" class="px-6 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-sm shadow-lg hover:opacity-90 transition-all flex items-center gap-2">
+                                <span>Explorar Evidencias</span>
+                                <i class="fa-solid fa-arrow-down text-xs"></i>
+                            </a>
+                            <a href="#estadisticas" class="px-6 py-3 rounded-xl glass-card hover:bg-slate-200/50 dark:hover:bg-slate-800/50 text-slate-800 dark:text-slate-200 font-semibold text-sm transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-chart-pie text-cyan-500"></i>
+                                <span>Ver Desempeño</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Quick Summary Stats -->
+                    <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                        <div class="glass-card p-6 rounded-2xl shadow-lg border-l-4 border-l-cyan-500 transform hover:-translate-y-1 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-folder-open"></i>
+                            </div>
+                            <div class="text-3xl font-extrabold text-slate-900 dark:text-white" id="statTotal">0</div>
+                            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wide">Evidencias Totales</div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl shadow-lg border-l-4 border-l-emerald-500 transform hover:-translate-y-1 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="text-3xl font-extrabold text-slate-900 dark:text-white" id="statAvg">9.8</div>
+                            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wide">Promedio General</div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl shadow-lg border-l-4 border-l-violet-500 transform hover:-translate-y-1 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-violet-500/10 text-violet-500 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-cubes"></i>
+                            </div>
+                            <div class="text-3xl font-extrabold text-slate-900 dark:text-white">2</div>
+                            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wide">Submódulos Evaluados</div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl shadow-lg border-l-4 border-l-amber-500 transform hover:-translate-y-1 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="text-3xl font-extrabold text-slate-900 dark:text-white" id="statCompleted">100%</div>
+                            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wide">Entregas a Tiempo</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- GLOBAL CONTROLS (SEARCH & FILTER BAR) -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+            <div class="glass-card p-4 rounded-2xl shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
+                
+                <!-- Search Input -->
+                <div class="relative w-full md:w-96">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="searchInput" oninput="filterEvidences()" placeholder="Buscar por título, tecnología o descripción..." class="w-full pl-11 pr-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm">
+                </div>
+
+                <!-- Status Filter Dropdown & Clear -->
+                <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
+                    <label for="statusFilter" class="text-xs font-semibold text-slate-500 uppercase hidden sm:block">Filtrar Estado:</label>
+                    <select id="statusFilter" onchange="filterEvidences()" class="px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 cursor-pointer">
+                        <option value="all">Todos los Estados</option>
+                        <option value="Excelente">Excelente (100%)</option>
+                        <option value="Evaluado">Evaluado</option>
+                        <option value="En Revisión">En Revisión</option>
+                    </select>
+
+                    <button onclick="resetFilters()" class="p-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold transition-colors flex items-center gap-1.5" title="Restablecer Filtros">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span class="hidden sm:inline">Limpiar</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOQUE PRINCIPAL 1: CONSTRUYE APLICACIONES WEB -->
+        <section id="construye" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-200 dark:border-slate-800 gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-500/10 text-cyan-500 font-mono text-xs font-bold uppercase mb-2">
+                        <i class="fa-solid fa-layer-group"></i> Submódulo 1
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Construye Aplicaciones Web</h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mt-1 max-w-2xl">
+                        Enfoque en desarrollo Frontend client-side: maquetación semántica HTML5, estilos avanzados CSS3, lógica interactiva con JavaScript ES6+, manipulación del DOM y consumo de APIs REST.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
+                    <span id="countConstruye" class="px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 font-bold text-cyan-500">4 Evidencias</span>
+                </div>
+            </div>
+
+            <!-- Evidence Cards Grid -->
+            <div id="construyeGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Cards will be populated dynamically by JS -->
+            </div>
+        </section>
+
+
+        <!-- BLOQUE PRINCIPAL 2: IMPLEMENTA APLICACIONES WEB -->
+        <section id="implementa" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-200 dark:border-slate-800 gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-violet-500/10 text-violet-500 font-mono text-xs font-bold uppercase mb-2">
+                        <i class="fa-solid fa-server"></i> Submódulo 2
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Implementa Aplicaciones Web</h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mt-1 max-w-2xl">
+                        Enfoque en despliegue backend, configuración de servidores locales y remotos, gestión de bases de datos relacionales, hosting cloud, integración continua y mantenimiento web.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
+                    <span id="countImplementa" class="px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 font-bold text-violet-500">4 Evidencias</span>
+                </div>
+            </div>
+
+            <!-- Evidence Cards Grid -->
+            <div id="implementaGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Cards will be populated dynamically by JS -->
+            </div>
+        </section>
+
+
+        <!-- STATS & COMPETENCIES SUMMARY SECTION -->
+        <section id="estadisticas" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <h2 class="text-2xl sm:text-3xl font-bold">Resumen de Competencias Técnicas</h2>
+                    <p class="text-slate-500 text-sm mt-2">Nivel de dominio alcanzado según la rúbrica institucional de evaluación.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Progress Bars Left -->
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>HTML5 & CSS3 Semántico / Responsive</span>
+                                <span class="text-cyan-500">98%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-cyan-500 rounded-full" style="width: 98%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>JavaScript ES6+ & DOM API</span>
+                                <span class="text-cyan-500">92%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-cyan-500 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Servidores Web & Entorno Local (XAMPP/Nginx)</span>
+                                <span class="text-violet-500">95%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-violet-500 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bars Right -->
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Bases de Datos & SQL CRUD</span>
+                                <span class="text-violet-500">90%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-violet-500 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Despliegue Cloud (Vercel / Render / Git)</span>
+                                <span class="text-violet-500">96%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-violet-500 rounded-full" style="width: 96%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Documentación Técnica & Seguridad Web</span>
+                                <span class="text-emerald-500">94%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-emerald-500 rounded-full" style="width: 94%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- TEACHER & CONTACT SECTION -->
+        <section id="contacto" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- School & Teacher Stamp -->
+                <div class="lg:col-span-5 glass-card p-6 rounded-3xl border border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-cyan-500 text-xl font-bold">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Validación Académica</h3>
+                            <p class="text-xs text-slate-500">Submódulos de Programación Web</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        Este portafolio constituye la evidencia oficial del cumplimiento de las competencias profesionales establecidas en el programa de estudios oficial.
+                    </p>
+                    <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+                        <div>
+                            <span class="block text-slate-400 font-semibold">FIRMA DOCENTE:</span>
+                            <span class="font-bold text-slate-800 dark:text-slate-200">Ing. Roberto Gómez</span>
+                        </div>
+                        <span class="px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-500 font-mono font-bold text-[10px] uppercase">Aprobado</span>
+                    </div>
+                </div>
+
+                <!-- Contact Links -->
+                <div class="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl space-y-4">
+                    <h3 class="text-xl font-bold">Información de Contacto del Estudiante</h3>
+                    <p class="text-slate-500 text-sm">Disponible para consultas sobre código fuente, proyectos de estadías o colaboraciones.</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                        <a href="https://github.com" target="_blank" class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors flex items-center space-x-3">
+                            <i class="fa-brands fa-github text-2xl text-slate-800 dark:text-white"></i>
+                            <div>
+                                <span class="block text-xs text-slate-400">GitHub</span>
+                                <span class="text-xs font-bold">@carlosmendoza</span>
+                            </div>
+                        </a>
+
+                        <a href="mailto:estudiante@escuela.edu.mx" class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors flex items-center space-x-3">
+                            <i class="fa-solid fa-envelope text-2xl text-cyan-500"></i>
+                            <div>
+                                <span class="block text-xs text-slate-400">Correo</span>
+                                <span class="text-xs font-bold truncate">carlos.dev@edu.mx</span>
+                            </div>
+                        </a>
+
+                        <a href="https://linkedin.com" target="_blank" class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors flex items-center space-x-3">
+                            <i class="fa-brands fa-linkedin text-2xl text-blue-500"></i>
+                            <div>
+                                <span class="block text-xs text-slate-400">LinkedIn</span>
+                                <span class="text-xs font-bold">Carlos Mendoza</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/60 py-8 text-xs text-slate-500 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <p class="font-semibold text-slate-700 dark:text-slate-300">Portafolio de Evidencias - Construye e Implementa Aplicaciones Web</p>
+                <p class="mt-0.5">© <span id="year">2026</span> Carlos Eduardo Mendoza. Todos los derechos reservados.</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="inline-flex items-center gap-1.5 text-emerald-500 font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Estado: Activo / Evaluado
+                </span>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- MODAL 1: VER DETALLES DE EVIDENCIA -->
+    <div id="detailModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm transition-opacity">
+        <div class="glass-card max-w-2xl w-full max-h-[90vh] rounded-3xl overflow-y-auto p-6 sm:p-8 shadow-2xl relative border border-slate-200 dark:border-slate-800 animate-in fade-in zoom-in duration-200">
+            
+            <button onclick="closeDetailModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Modal Content Header -->
+            <div class="flex items-center space-x-2 mb-3">
+                <span id="modalSubmodule" class="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wide"></span>
+                <span id="modalParcial" class="text-xs text-slate-400 font-medium"></span>
+            </div>
+
+            <h3 id="modalTitle" class="text-2xl font-bold mb-4 pr-8"></h3>
+
+            <!-- Tags -->
+            <div id="modalTags" class="flex flex-wrap gap-1.5 mb-6"></div>
+
+            <!-- Description & Information -->
+            <div class="space-y-4 text-sm text-slate-600 dark:text-slate-300">
+                <div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider mb-1">Descripción Detallada</h4>
+                    <p id="modalDescription" class="leading-relaxed bg-slate-100 dark:bg-slate-800/40 p-3.5 rounded-xl text-xs sm:text-sm"></p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider mb-1">Competencias Desarrolladas</h4>
+                    <ul id="modalCompetencies" class="list-disc list-inside space-y-1 text-xs sm:text-sm pl-1"></ul>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 pt-2">
+                    <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/50">
+                        <span class="block text-[10px] text-slate-400 uppercase font-bold">Fecha de Entrega</span>
+                        <span id="modalDate" class="font-semibold text-xs sm:text-sm"></span>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/50">
+                        <span class="block text-[10px] text-slate-400 uppercase font-bold">Calificación Obtenida</span>
+                        <span id="modalScore" class="font-bold text-xs sm:text-sm text-emerald-500"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-8 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-3 justify-end">
+                <a id="modalGithub" href="#" target="_blank" class="px-4 py-2.5 rounded-xl bg-slate-800 dark:bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold flex items-center gap-2 transition-colors">
+                    <i class="fa-brands fa-github"></i> Código en GitHub
+                </a>
+                <a id="modalDemo" href="#" target="_blank" class="px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-white text-xs font-semibold flex items-center gap-2 transition-colors shadow-md">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver Demo en Vivo
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL 2: SIMULAR "+ NUEVA EVIDENCIA" -->
+    <div id="addModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+        <div class="glass-card max-w-lg w-full rounded-3xl p-6 shadow-2xl relative border border-slate-200 dark:border-slate-800">
+            <button onclick="closeAddModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="text-xl font-bold mb-1">Registrar Nueva Evidencia</h3>
+            <p class="text-xs text-slate-400 mb-6">Simulación de ingreso de proyecto al sistema del portafolio.</p>
+
+            <form id="addEvidenceForm" onsubmit="handleAddEvidence(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-semibold mb-1">Submódulo</label>
+                    <select id="newModule" class="w-full p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:outline-none">
+                        <option value="construye">Construye Aplicaciones Web</option>
+                        <option value="implementa">Implementa Aplicaciones Web</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-1">Título de la Evidencia</label>
+                    <input type="text" id="newTitle" required placeholder="Ej. Sistema de Autenticación JWT" class="w-full p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold mb-1">Parcial / Periodo</label>
+                        <select id="newParcial" class="w-full p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:outline-none">
+                            <option value="1er Parcial">1er Parcial</option>
+                            <option value="2do Parcial">2do Parcial</option>
+                            <option value="3er Parcial">3er Parcial</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-semibold mb-1">Estado</label>
+                        <select id="newStatus" class="w-full p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:outline-none">
+                            <option value="Excelente">Excelente (100)</option>
+                            <option value="Evaluado">Evaluado</option>
+                            <option value="En Revisión">En Revisión</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-1">Tecnologías (Separadas por coma)</label>
+                    <input type="text" id="newTags" placeholder="HTML, CSS, JavaScript, React" class="w-full p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-1">Descripción Breve</label>
+                    <textarea id="newDesc" required rows="2" placeholder="Resumen del trabajo realizado..." class="w-full p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:outline-none"></textarea>
+                </div>
+
+                <div class="pt-3 flex justify-end space-x-2">
+                    <button type="button" onclick="closeAddModal()" class="px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 font-semibold">Cancelar</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-white font-bold shadow-md">Guardar Evidencia</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 hidden glass-card p-4 rounded-2xl shadow-2xl border border-cyan-500/30 flex items-center gap-3 animate-bounce">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
+        <span id="toastMessage" class="text-xs font-bold text-slate-900 dark:text-white">¡Operación completada!</span>
+    </div>
+
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Initial Evidence Data Store
+        const initialEvidences = [
+            // CONSTRUYE APLICACIONES WEB (SUBMÓDULO 1)
+            {
+                id: 1,
+                module: 'construye',
+                title: 'Maquetación Semántica y CSS Responsive',
+                parcial: '1er Parcial',
+                date: '2026-09-18',
+                status: 'Excelente',
+                score: 100,
+                tags: ['HTML5', 'CSS3', 'Flexbox', 'Responsive'],
+                shortDesc: 'Diseño e implementación de una landing page educacional adaptada a dispositivos móviles con HTML5 semántico.',
+                fullDesc: 'Proyecto enfocado en la estructuración correcta de etiquetas HTML5 (header, nav, section, article, footer) sin el uso de divs innecesarios. Se incorporó CSS Flexbox y CSS Grid para diseño totalmente adaptable.',
+                competencies: [
+                    'Aplica etiquetas semánticas según estándares W3C.',
+                    'Crea maquetados flexibles y adaptables a móviles.',
+                    'Mantiene un código limpio y estructurado.'
+                ],
+                github: 'https://github.com',
+                demo: 'https://github.com'
+            },
+            {
+                id: 2,
+                module: 'construye',
+                title: 'Formulario Interactivo con Validaciones JS',
+                parcial: '1er Parcial',
+                date: '2026-10-05',
+                status: 'Excelente',
+                score: 100,
+                tags: ['JavaScript', 'DOM', 'Regex', 'UI/UX'],
+                shortDesc: 'Formulario dinámico de registro con validación en tiempo real utilizando Expresiones Regulares en JavaScript.',
+                fullDesc: 'Desarrollo de lógica cliente para validar correo, contraseñas con nivel de seguridad, números telefónicos y campos obligatorios. Muestra mensajes de error interactivos antes del envío.',
+                competencies: [
+                    'Captura y manipula eventos del DOM con JavaScript.',
+                    'Aplica expresiones regulares para validación de datos.',
+                    'Mejora la experiencia de usuario (UX) mediante feedback directo.'
+                ],
+                github: 'https://github.com',
+                demo: 'https://github.com'
+            },
+            {
+                id: 3,
+                module: 'construye',
+                title: 'Aplicación Web Dinámica (Consumo de API REST)',
+                parcial: '2do Parcial',
+                date: '2026-10-28',
+                status: 'Evaluado',
+                score: 95,
+                tags: ['JavaScript', 'Fetch API', 'Async/Await', 'JSON'],
+                shortDesc: 'Panel web interactivo para consultar el clima y noticias en tiempo real consumiendo APIs públicas.',
+                fullDesc: 'Implementación de peticiones asíncronas mediante `fetch()` y `async/await`. La aplicación procesa respuestas JSON y renderiza tarjetas dinámicas en el DOM sin recargar la página.',
+                competencies: [
+                    'Realiza peticiones asíncronas a servidores remotos.',
+                    'Maneja estados de carga y errores de red.',
+                    'Renderiza elementos dinámicos mediante JavaScript.'
+                ],
+                github: 'https://github.com',
+                demo: 'https://github.com'
+            },
+            {
+                id: 4,
+                module: 'construye',
+                title: 'Proyecto Integrador Frontend Web App',
+                parcial: '3er Parcial',
+                date: '2026-11-08',
+                status: 'Excelente',
+                score: 100,
+                tags: ['HTML5', 'Tailwind CSS', 'JavaScript', 'SPA'],
+                shortDesc: 'Aplicación Single Page Application (SPA) para gestión de tareas y proyectos con almacenamiento LocalStorage.',
+                fullDesc: 'Proyecto final del submódulo 1. Integra componentes visuales estilizados con Tailwind CSS y persistencia de datos local para mantener la información del usuario activa.',
+                competencies: [
+                    'Integra herramientas y frameworks modernos CSS.',
+                    'Aplica almacenamiento persistente LocalStorage.',
+                    'Desarrolla interfaces de usuario atractivas y funcionales.'
+                ],
+                github: 'https://github.com',
+                demo: 'https://github.com'
+            },
+
+            // IMPLEMENTA APLICACIONES WEB (SUBMÓDULO 2)
+            {
+                id: 5,
+                module: 'implementa',
+                title: 'Configuración de Servidor Local Apache/XAMPP',
+                parcial: '1er Parcial',
+                date: '2026-09-25',
+                status: 'Excelente',
+                score: 100,
+                tags: ['XAMPP', 'Apache', 'PHP', 'VirtualHosts'],
+                shortDesc: 'Montaje y virtualización de entorno de servidor local para pruebas y ejecución de Scripts PHP.',
+                fullDesc: 'Práctica de configuración del servidor Apache mediante archivos httpd.conf y hosts para la simulación de dominios locales `.local`, además de la ejecución de entornos aislados de desarrollo.',
+                competencies: [
+                    'Instala y configura entornos de servidores locales.',
+                    'Comprende el modelo Cliente-Servidor y dominios.',
+                    'Administra directorios raíz y permisos de ejecución.'
+                ],
+                github: 'https://github.com',
+                demo: 'https://github.com'
+            },
+            {
+                id: 6,
+                module: 'implementa',
+                title: 'Base de Datos Relacional y CRUD Backend',
+                parcial: '2do Parcial',
+                date: '2026-10-18',
+                status: 'Evaluado',
+                score: 92,
+                tags: ['MySQL', 'PHP / Node.js', 'SQL', 'CRUD'],
+                shortDesc: 'Creación de base de datos MySQL y conexión backend para operaciones Create, Read, Update y Delete.',
+                fullDesc: 'Diseño del diagrama entidad-relación para un sistema escolar. Implementación de consultas SQL preparadas para prevenir inyecciones SQL y garantizar integridad referencial.',
+                competencies: [
+                    'Diseña y gestiona bases de datos relacionales.',
+                    'Establece conexiones seguras entre Backend y BD.',
+                    'Construye módulos funcionales de altas, bajas y cambios.'
+                ],
+                github: 'https://github.com',
+                demo: 'https://github.com'
+            },
+            {
+                id: 7,
+                module: 'implementa',
+                title: 'Despliegue Cloud en Plataformas Vercel & Render',
+                parcial: '2do Parcial',
+                date: '2026-11-02',
+                status: 'Excelente',
+                score: 100,
+                tags: ['Git', 'GitHub', 'Vercel', 'CI/CD'],
+                shortDesc: 'Publicación de aplicaciones web en servidores productivos utilizando integración continua desde GitHub.',
+                fullDesc: 'Configuración de despliegue automatizado. Cada subida de código en la rama `main` activa la compilación e implementación automática en dominios HTTPS provistos por Vercel.',
+                competencies: [
+                    'Utiliza Git y GitHub para control de versiones.',
+                    'Implementa flujos de integración y despliegue continuo (CI/CD).',
+                    'Configura variables de entorno y dominios en la nube.'
+                ],
+                github: 'https://github.com',
+                demo: 'https://github.com'
+            },
+            {
+                id: 8,
+                module: 'implementa',
+                title: 'Documentación y Manual de Mantenimiento Web',
+                parcial: '3er Parcial',
+                date: '2026-11-09',
+                status: 'Evaluado',
+                score: 96,
+                tags: ['Doc', 'Seguridad', 'SSL', 'Auditoría'],
+                shortDesc: 'Elaboración de la carpeta técnica, certificado SSL y manual de respaldos para la aplicación web.',
+                fullDesc: 'Redacción de documentación formal de la arquitectura de software, planes de contingencia, gestión de certificados SSL/TLS y protocolo de copias de seguridad de la base de datos.',
+                competencies: [
+                    'Documenta proyectos de software bajo estándares profesionales.',
+                    'Aplica directrices básicas de seguridad web e HTTPS.',
+                    'Establece rutinas de mantenimiento técnico preventivo.'
+                ],
+                github: 'https://github.com',
+                demo: 'https://github.com'
+            }
+        ];
+
+        let evidences = [...initialEvidences];
+
+        // RENDER EVIDENCES TO DOM
+        function renderEvidences(itemsToRender = evidences) {
+            const construyeGrid = document.getElementById('construyeGrid');
+            const implementaGrid = document.getElementById('implementaGrid');
+
+            construyeGrid.innerHTML = '';
+            implementaGrid.innerHTML = '';
+
+            const construyeItems = itemsToRender.filter(i => i.module === 'construye');
+            const implementaItems = itemsToRender.filter(i => i.module === 'implementa');
+
+            // Update Counts
+            document.getElementById('countConstruye').innerText = `${construyeItems.length} Evidencias`;
+            document.getElementById('countImplementa').innerText = `${implementaItems.length} Evidencias`;
+
+            // Helper to build HTML for single card
+            const createCardHTML = (item) => {
+                const statusColor = item.status === 'Excelente' 
+                    ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' 
+                    : (item.status === 'Evaluado' ? 'bg-cyan-500/10 text-cyan-500 border-cyan-500/20' : 'bg-amber-500/10 text-amber-500 border-amber-500/20');
+
+                const borderHover = item.module === 'construye' ? 'hover:border-cyan-500/50' : 'hover:border-violet-500/50';
+
+                return `
+                    <div class="glass-card p-6 rounded-2xl shadow-md hover:shadow-xl border border-slate-200 dark:border-slate-800 ${borderHover} transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <!-- Header status & Parcial -->
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span class="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold uppercase border ${statusColor}">
+                                    <i class="fa-solid fa-circle text-[6px] mr-1"></i>${item.status} (${item.score}/100)
+                                </span>
+                                <span class="text-xs font-semibold text-slate-400 font-mono"><i class="fa-regular fa-calendar mr-1"></i>${item.parcial}</span>
+                            </div>
+
+                            <!-- Title -->
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors mb-2">
+                                ${item.title}
+                            </h3>
+
+                            <!-- Short Description -->
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4 line-clamp-2">
+                                ${item.shortDesc}
+                            </p>
+
+                            <!-- Tech Tags -->
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                ${item.tags.map(t => `<span class="px-2 py-0.5 rounded-md bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[11px] font-mono">${t}</span>`).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Card Footer Action -->
+                        <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+                            <span class="text-slate-400 font-mono text-[11px]">${item.date}</span>
+                            <button onclick="openDetailModal(${item.id})" class="font-bold text-cyan-600 dark:text-cyan-400 hover:text-cyan-500 flex items-center gap-1.5 transition-colors">
+                                <span>Ver Detalles</span>
+                                <i class="fa-solid fa-chevron-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            };
+
+            // Populate Construye
+            if (construyeItems.length === 0) {
+                construyeGrid.innerHTML = `<p class="col-span-2 text-center text-slate-400 py-8 text-sm">No se encontraron evidencias coincidentes.</p>`;
+            } else {
+                construyeItems.forEach(item => construyeGrid.innerHTML += createCardHTML(item));
+            }
+
+            // Populate Implementa
+            if (implementaItems.length === 0) {
+                implementaGrid.innerHTML = `<p class="col-span-2 text-center text-slate-400 py-8 text-sm">No se encontraron evidencias coincidentes.</p>`;
+            } else {
+                implementaItems.forEach(item => implementaGrid.innerHTML += createCardHTML(item));
+            }
+
+            updateStats();
+        }
+
+        // UPDATE STATS COUNTERS
+        function updateStats() {
+            document.getElementById('statTotal').innerText = evidences.length;
+            
+            const totalScore = evidences.reduce((sum, item) => sum + item.score, 0);
+            const avg = evidences.length > 0 ? (totalScore / evidences.length / 10).toFixed(1) : '10.0';
+            document.getElementById('statAvg').innerText = avg;
+        }
+
+        // FILTER EVIDENCES (SEARCH & SELECT)
+        function filterEvidences() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const status = document.getElementById('statusFilter').value;
+
+            const filtered = evidences.filter(item => {
+                const matchesSearch = item.title.toLowerCase().includes(query) || 
+                                      item.shortDesc.toLowerCase().includes(query) ||
+                                      item.tags.some(t => t.toLowerCase().includes(query));
+
+                const matchesStatus = status === 'all' || item.status === status;
+
+                return matchesSearch && matchesStatus;
+            });
+
+            renderEvidences(filtered);
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('statusFilter').value = 'all';
+            renderEvidences(evidences);
+        }
+
+        // MODAL DETAIL HANDLERS
+        function openDetailModal(id) {
+            const item = evidences.find(e => e.id === id);
+            if (!item) return;
+
+            const isConstruye = item.module === 'construye';
+            const subBadge = document.getElementById('modalSubmodule');
+            subBadge.innerText = isConstruye ? 'Submódulo 1: Construye' : 'Submódulo 2: Implementa';
+            subBadge.className = `px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wide ${isConstruye ? 'bg-cyan-500/10 text-cyan-500' : 'bg-violet-500/10 text-violet-500'}`;
+
+            document.getElementById('modalTitle').innerText = item.title;
+            document.getElementById('modalParcial').innerText = `• ${item.parcial}`;
+            document.getElementById('modalDescription').innerText = item.fullDesc;
+            document.getElementById('modalDate').innerText = item.date;
+            document.getElementById('modalScore').innerText = `${item.score} / 100 (${item.status})`;
+
+            // Tags
+            const tagsContainer = document.getElementById('modalTags');
+            tagsContainer.innerHTML = item.tags.map(t => `<span class="px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-xs font-mono">${t}</span>`).join('');
+
+            // Competencies
+            const compContainer = document.getElementById('modalCompetencies');
+            compContainer.innerHTML = item.competencies.map(c => `<li>${c}</li>`).join('');
+
+            // Links
+            document.getElementById('modalGithub').href = item.github;
+            document.getElementById('modalDemo').href = item.demo;
+
+            document.getElementById('detailModal').classList.remove('hidden');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+        }
+
+        // ADD EVIDENCE SIMULATOR
+        function openAddModal() {
+            document.getElementById('addModal').classList.remove('hidden');
+        }
+
+        function closeAddModal() {
+            document.getElementById('addModal').classList.add('hidden');
+        }
+
+        function handleAddEvidence(e) {
+            e.preventDefault();
+
+            const module = document.getElementById('newModule').value;
+            const title = document.getElementById('newTitle').value;
+            const parcial = document.getElementById('newParcial').value;
+            const status = document.getElementById('newStatus').value;
+            const tagsRaw = document.getElementById('newTags').value;
+            const shortDesc = document.getElementById('newDesc').value;
+
+            const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()) : ['Web', 'Práctica'];
+            const score = status === 'Excelente' ? 100 : (status === 'Evaluado' ? 90 : 85);
+
+            const newEv = {
+                id: Date.now(),
+                module,
+                title,
+                parcial,
+                date: new Date().toISOString().split('T')[0],
+                status,
+                score,
+                tags,
+                shortDesc,
+                fullDesc: shortDesc + ' (Evidencia registrada manualmente en la sesión actual).',
+                competencies: ['Desarrolla habilidades aplicadas según el programa de estudios.'],
+                github: 'https://github.com',
+                demo: 'https://github.com'
+            };
+
+            evidences.unshift(newEv);
+            renderEvidences();
+            closeAddModal();
+            document.getElementById('addEvidenceForm').reset();
+
+            showToast('¡Nueva evidencia registrada correctamente!');
+        }
+
+        // TOAST NOTIFICATION
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').innerText = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // DARK / LIGHT THEME TOGGLE
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // MOBILE MENU TOGGLE
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // INITIALIZATION
+        window.onload = function() {
+            // Set dynamic current year in footer
+            document.getElementById('year').innerText = new Date().getFullYear();
+
+            // Load saved theme preference
+            if (localStorage.getItem('theme') === 'light') {
+                document.documentElement.classList.remove('dark');
+            }
+
+            // Initial Render
+            renderEvidences();
+        };
+    </script>
+</body>
+</html>
